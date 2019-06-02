@@ -1,73 +1,74 @@
-<template>
-  <v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      fixed
-      app
-    >
-      <v-list dense>
-        <v-list-tile @click="">
-          <v-list-tile-action>
-            <v-icon>home</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Home</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-        <v-list-tile @click="">
-          <v-list-tile-action>
-            <v-icon>contact_mail</v-icon>
-          </v-list-tile-action>
-          <v-list-tile-content>
-            <v-list-tile-title>Contact</v-list-tile-title>
-          </v-list-tile-content>
-        </v-list-tile>
-      </v-list>
-    </v-navigation-drawer>
-    <v-toolbar color="indigo" dark fixed app>
-      <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>Application2</v-toolbar-title>
-    </v-toolbar>
-    <v-content>
-      <v-container fluid fill-height>
-        <v-layout
-          justify-center
-          align-center
-        >
-          <v-flex text-xs-center>
-            <v-tooltip left>
-              <template v-slot:activator="{ on }">
-                <v-btn :href="source" icon large target="_blank" v-on="on">
-                  <v-icon large>code</v-icon>
-                </v-btn>
-              </template>
-              <span>Source</span>
-            </v-tooltip>
-            <v-tooltip right>
-              <template v-slot:activator="{ on }">
-                <v-btn icon large href="https://codepen.io/johnjleider/pen/rJdVMq" target="_blank" v-on="on">
-                  <v-icon large>mdi-codepen</v-icon>
-                </v-btn>
-              </template>
-              <span>Codepen</span>
-            </v-tooltip>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </v-content>
-    <v-footer color="indigo" app>
-      <span class="white--text">&copy; 2017</span>
-    </v-footer>
-  </v-app>
+<template lang="pug">
+  v-app#inspire
+    v-navigation-drawer(v-model="drawer" fixed="" app="")
+      v-list(dense="")
+        v-list-tile(@click="")
+          v-list-tile-action
+            v-icon home
+          v-list-tile-content
+            v-list-tile-title Home
+        v-list-tile(@click="")
+          v-list-tile-action
+            v-icon contact_mail
+          v-list-tile-content
+            v-list-tile-title Contact
+    v-toolbar(color="indigo" dark="" fixed="" app="")
+      v-toolbar-side-icon(@click.stop="drawer = !drawer")
+      v-toolbar-title 自己紹介ページ
+    v-content
+      v-container(fluid="" fill-height="")
+        v-layout(justify-center="" align-center="")
+          v-flex(text-xs-center="")
+            //- v-tooltip(left="")
+            //-   template(v-slot:activator="{ on }")
+            //-     v-btn(:href="source" icon="" large="" target="_blank" v-on="on")
+            //-       v-icon(large="") code
+            //-   span Source
+            //- v-tooltip(right="")
+            //-   template(v-slot:activator="{ on }")
+            //-     v-btn(icon="" large="" href="https://codepen.io/johnjleider/pen/rJdVMq" target="_blank" v-on="on")
+            //-       v-icon(large="") mdi-codepen
+            //-   span Codepen
+    v-footer(color="indigo" app="" height="auto")
+      v-card.flex(flat="" tile="").white--text
+        v-card-title.indigo.accent-1
+          strong.subheading 私のソーシャルアカウントはこちら！
+          v-spacer
+          v-btn.mx-3(v-for="icon in icons" :key="icon" dark="" icon="")
+            v-icon(size="24px" @click="moveSocielLink(icon)") {{ icon }}
+        v-card-actions.indigo.justify-center
+          | &copy; 2019 — 
+          strong Self Intruduction Page by Vuetify
 </template>
 
-<script>
-  export default {
-    data: () => ({
-      drawer: null
-    }),
-    props: {
-      source: String
-    }
+<script lang="ts">
+import { Vue, Component, Prop} from "vue-property-decorator";
+@Component({
+  props:{
+    source: String
   }
+})
+export default class App extends Vue {
+  drawer: any = null;
+  icons: any = [
+      'fab fa-facebook',
+      'fab fa-twitter',
+      'fab fa-google-plus',
+      'fab fa-linkedin',
+      'fab fa-instagram'
+    ];
+    public moveSocielLink(socielIcon: string){
+      if (socielIcon.indexOf("facebook") !== -1){
+        window.open("https://ja-jp.facebook.com/", "_blank")
+      } else if (socielIcon.indexOf("twitter") !== -1){
+        window.open("https://twitter.com/login?lang=ja", "_blank")
+      } else if (socielIcon.indexOf("google") !== -1){
+        window.open("https://www.google.com/?hl=ja", "_blank")
+      } else if (socielIcon.indexOf("linkedin") !== -1){
+        window.open("https://www.linkedin.com/uas/login", "_blank")
+      } else if (socielIcon.indexOf("instagram") !== -1){
+        window.open("https://www.instagram.com/?hl=ja", "_blank")
+      }
+    }
+}
 </script>
