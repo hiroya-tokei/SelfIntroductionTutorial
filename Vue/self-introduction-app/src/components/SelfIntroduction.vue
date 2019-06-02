@@ -25,14 +25,13 @@ import { Component, Vue } from "vue-property-decorator";
 export default class SelfIntroduction extends Vue {
   skillTagList: string[] = ["Javascript", "Vue.js", "AWS"];
   skillColorList: string[] = ["primary", "secondary", "green"];
-  selfIntroductionMessage: string = 
-    `AWSを使ったサービスをメインに提供しています
+  selfIntroductionMessage: string = `AWSを使ったサービスをメインに提供しています
     また、フロントエンドも少し触ります
-    あと、Linux大好きです。特に、DebianとUbuntuが好きです`
-  hobyList: string[] = ["寝ることー", "読書ー", "Linuxを触って遊ぶことー"]
+    あと、Linux大好きです。特に、DebianとUbuntuが好きです`;
+  hobyList: string[] = ["寝ることー", "読書ー", "Linuxを触って遊ぶことー"];
 
-  public getSkillColorList(index: number){
-    if (index > this.skillColorList.length){
+  public getSkillColorList(index: number) {
+    if (index > this.skillColorList.length) {
       // 配列の最後の要素を返す
       return this.skillColorList.slice(-1)[0];
     } else {
