@@ -15,7 +15,7 @@
         p.subheading(style="white-space:pre-wrap") {{ selfIntroductionMessage }}
       v-flex(mb-5="" xs12="")
         h2.headline.font-weight-bold.mb-3 趣味は？
-        p.subheading(v-for="(hoby, i) in hobyList" :key="i") {{ hoby }}
+        p.subheading.ma-1(v-for="(hoby, i) in hobyList" :key="i") {{ hoby }}
 </template>
 
 <script lang="ts">

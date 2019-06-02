@@ -7,7 +7,7 @@
             v-icon home
           v-list-tile-content
             v-list-tile-title Home
-        v-list-tile(@click="" to="/about")
+        v-list-tile(@click="" to="/other")
           v-list-tile-action
             v-icon contact_mail
           v-list-tile-content
