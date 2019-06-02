@@ -2,12 +2,12 @@
   v-app#inspire
     v-navigation-drawer(v-model="drawer" fixed="" app="")
       v-list(dense="")
-        v-list-tile(@click="")
+        v-list-tile(@click="" to="/")
           v-list-tile-action
             v-icon home
           v-list-tile-content
             v-list-tile-title Home
-        v-list-tile(@click="")
+        v-list-tile(@click="" to="/about")
           v-list-tile-action
             v-icon contact_mail
           v-list-tile-content
@@ -19,16 +19,8 @@
       v-container(fluid="" fill-height="")
         v-layout(justify-center="" align-center="")
           v-flex(text-xs-center="")
-            //- v-tooltip(left="")
-            //-   template(v-slot:activator="{ on }")
-            //-     v-btn(:href="source" icon="" large="" target="_blank" v-on="on")
-            //-       v-icon(large="") code
-            //-   span Source
-            //- v-tooltip(right="")
-            //-   template(v-slot:activator="{ on }")
-            //-     v-btn(icon="" large="" href="https://codepen.io/johnjleider/pen/rJdVMq" target="_blank" v-on="on")
-            //-       v-icon(large="") mdi-codepen
-            //-   span Codepen
+            router-view
+            
     v-footer(color="indigo" app="" height="auto")
       v-card.flex(flat="" tile="").white--text
         v-card-title.indigo.accent-1
@@ -42,33 +34,33 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop} from "vue-property-decorator";
+import { Vue, Component, Prop } from "vue-property-decorator";
 @Component({
-  props:{
+  props: {
     source: String
   }
 })
 export default class App extends Vue {
   drawer: any = null;
   icons: any = [
-      'fab fa-facebook',
-      'fab fa-twitter',
-      'fab fa-google-plus',
-      'fab fa-linkedin',
-      'fab fa-instagram'
-    ];
-    public moveSocielLink(socielIcon: string){
-      if (socielIcon.indexOf("facebook") !== -1){
-        window.open("https://ja-jp.facebook.com/", "_blank")
-      } else if (socielIcon.indexOf("twitter") !== -1){
-        window.open("https://twitter.com/login?lang=ja", "_blank")
-      } else if (socielIcon.indexOf("google") !== -1){
-        window.open("https://www.google.com/?hl=ja", "_blank")
-      } else if (socielIcon.indexOf("linkedin") !== -1){
-        window.open("https://www.linkedin.com/uas/login", "_blank")
-      } else if (socielIcon.indexOf("instagram") !== -1){
-        window.open("https://www.instagram.com/?hl=ja", "_blank")
-      }
+    "fab fa-facebook",
+    "fab fa-twitter",
+    "fab fa-google-plus",
+    "fab fa-linkedin",
+    "fab fa-instagram"
+  ];
+  public moveSocielLink(socielIcon: string) {
+    if (socielIcon.indexOf("facebook") !== -1) {
+      window.open("https://ja-jp.facebook.com/", "_blank");
+    } else if (socielIcon.indexOf("twitter") !== -1) {
+      window.open("https://twitter.com/login?lang=ja", "_blank");
+    } else if (socielIcon.indexOf("google") !== -1) {
+      window.open("https://www.google.com/?hl=ja", "_blank");
+    } else if (socielIcon.indexOf("linkedin") !== -1) {
+      window.open("https://www.linkedin.com/uas/login", "_blank");
+    } else if (socielIcon.indexOf("instagram") !== -1) {
+      window.open("https://www.instagram.com/?hl=ja", "_blank");
     }
+  }
 }
 </script>
