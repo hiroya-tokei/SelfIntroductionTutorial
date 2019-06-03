@@ -24,6 +24,7 @@
 import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 
+// TODO: エンドポイントは適宜修正して下さい
 const API_ENDPOINT =
   "https://XXXXXXXX.execute-api.ap-northeast-1.amazonaws.com/prod/";
 
