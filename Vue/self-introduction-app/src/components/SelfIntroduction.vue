@@ -31,7 +31,7 @@
                     v-textarea(v-model="editSelfIntroductionMessage" auto-grow="" box="")
                   v-flex(xs12="" sm6="" md4="")
                     h2 趣味
-                    v-text-field(v-for="(hobby, i) in editHobbyList" v-model="editHobbyList[i]" :value="hobby")
+                    v-text-field(required="" v-for="(hobby, i) in editHobbyList" v-model="editHobbyList[i]" :value="hobby")
                   v-flex(xs12="" sm12="" align-self-center="")
                     v-layout.justify-center(wrap="")
                       v-btn(dark="" icon="")
@@ -62,17 +62,14 @@ const API_ENDPOINT =
 export default class SelfIntroduction extends Vue {
   skillTagList: string[] = ["Javascript", "Vue.js", "AWS"];
   skillColorList: string[] = ["primary", "secondary", "green"];
-  selfIntroductionMessage: string =
-    "AWSを使ったサービスをメインに提供しています\n" +
-    "また、フロントエンドも少し触ります\n" +
-    "あと、Linux大好きです。特に、DebianとUbuntuが好きです";
+  selfIntroductionMessage: string = "";
   editSelfIntroductionMessage: string = "";
-  hobbyList: string[] = ["寝ることー", "読書ー", "Linuxを触って遊ぶことー"];
-  // プロフェル編集ページで編集した趣味項目格納用
+  hobbyList: string[] = [];
+  // プロフィール編集ページで編集した趣味項目格納用
   editHobbyList: string[] = [];
   dialog: boolean = false;
   loading: boolean = false;
-  alert: boolean =false;
+  alert: boolean = false;
   alertMessage: string = "";
 
   /**
@@ -90,6 +87,11 @@ export default class SelfIntroduction extends Vue {
       })
       .catch((err: any) => {
         window.console.error(err);
+        self.hobbyList = ["寝ることー", "読書ー", "Linuxを触って遊ぶことー"];
+        self.selfIntroductionMessage =
+          "AWSを使ったサービスをメインに提供しています\n" +
+          "また、フロントエンドも少し触ります\n" +
+          "あと、Linux大好きです。特に、DebianとUbuntuが好きです";
       })
       .finally(() => {
         self.editHobbyList = self.hobbyList.concat();
@@ -118,8 +120,6 @@ export default class SelfIntroduction extends Vue {
     editSelfIntroductionMessage: string,
     editHobbyList: string[]
   ): Promise<any> {
-    let hobbyList: string[] = ["test1", "test2", "test3"];
-    // const self = this;
     return new Promise<any>((resolve, reject) => {
       axios
         .post(API_ENDPOINT + "user-data", {
@@ -139,7 +139,7 @@ export default class SelfIntroduction extends Vue {
   }
 
   /**
-   * 更新ボタンを押したときのイベント
+   * 更新ボタンを押したときのイベント処理
    */
   public clickUpdateButton(): void {
     this.editHobbyList = this.hobbyList.concat();
